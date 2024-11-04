@@ -6,6 +6,21 @@ We propose a method to use Computer Vision to create art from our daily lives as
 
 If you find this code useful for your research, please cite the paper:
 
+```bibtex
+@inproceedings{silva2024,
+    title        = {Portal to Other Dimensions: use of Computer Vision to create art work from day life images},
+    author       = {Ferreira, Luísa and Osias, Ana and Vieira, Lucas and Silva, Michel},
+    year         = 2024,
+    booktitle    = {Anais do XIX Workshop de Visão Computacional}, 
+    location     = {Rio Paranaíba/MG},
+    address      = {Rio Paranaíba, MG, Brasil}
+    publisher    = {SBC}, 
+    doi          = {}, 
+    url          = {}, 
+    note         = {to appear}
+}
+```
+
 
 ## Getting Started
 
@@ -27,38 +42,46 @@ If you want to use the pretrained network with 16 styles, which requires less GP
 pip install -r requirements
 ```
 
+Please ensure that the file `best.pt` is included in your project, as it contains the weights for the fine-tuned YOLO model used for classifying and segmenting doors.
+
 ## Real Time Application To Convert Doors into Portals
 <details>
 <summary>Using Pretrained Network with 16 Styles</summary>
 Execute `realtime.py` script
 
 ```bash
-python realtime.py --save-video --style $style_number --model_path $model_path
+python realtime.py --save-video --style <style_number> --model_path <path_to_model>
 ```
 
-If you want to save the video after the program ended, you add the flag 'save-video'.
+<ul>
+  <li><code>--save-video</code>: This optional flag saves the video when the program runs.</li>
+  <li><code>--style</code>: Set <code>&lt;style_number&gt;</code> to a number from 0 to 15, representing each of the 16 styles the network is trained to transfer.</li>
+  <li><code>--model_path</code>: Specify <code>&lt;path_to_model&gt;</code> as the path to the pre-trained style transfer model, which can be downloaded from <a href="https://github.com/ryanwongsa/Real-time-multi-style-transfer">here</a>.</li>
+</ul>
+
 </details>
 
 
 <details>
 <summary>Using Arbitrary Transfer Style</summary>
-Execute `realtime_arbitrary.py` script
+
+Execute `realtime_arbitrary.py` script. The network to transfer style from arbitrary image needs more GPU memory to work(>= 3GB VRAM).
 
 ```bash
-python realtime.py --save-video --style_path $style_path 
+python realtime_arbitrary.py --save-video --style_path <path_to_style_image>
 ```
+<ul>
+  <li><code>--save-video</code>: This optional flag saves the video when the program runs.</li>
+  <li> <code>--style_path</code>: Replace <code>&lt;path_to_style_image&gt;</code> with the path to the image you want to use as the style.</li>
+</ul>
 
-If you want to save the video after the program ended, you add the flag 'save-video'.
 </details>
 
 
 
+## Acknowledgments 
 
-
-
-
-
-
+We would like to thank [@ryanwongsa](https://github.com/ryanwongsa) for making the model and [code](https://github.com/ryanwongsa/Real-time-multi-style-transfer?tab=readme-ov-file) for his implementation of Real-Time Style Transfer using PyTorch with 16 styles available. We also extend our gratitude to [Ghiasi et al.](https://arxiv.org/abs/1705.06830) for providing the model for arbitrary neural artistic stylization.
 
 
 ## Contact
